@@ -1,5 +1,5 @@
 {
-	"iggId": [1089254208],
+	"iggId": [1089254208, 1077012192],
 	"serverId" : "SID",
 	"subject": "\"The Crusade of Edda\" event starting soon!",
 	"content": "Dear Summoner,\r\n\r\nWe're excited to announce that the Crusade of Edda event will officially open for registration at 00:00 on June 7 (UTC)!\r\n\r\nDuring this epic 14-day event, you'll get to explore the vast continent and battle the legendary serpent Jormungandr! At the end of the event, you'll be ranked based on the damage dealt to Jormungandr. The higher your ranking, the greater the rewards.\r\n\r\nWe can't wait to see your courage and wit in action during the event!\r\n\r\nFor more information about the Crusade of Edda event, please visit our social media platforms:\r\n<link=\"https://www.facebook.com/MythicHeroesGlobal\"><color=\"blue\"><u>Official Facebook</u></color></link>\r\n<link=\"https://discord.gg/Xb4ggCJ8Fv\"><color=\"blue\"><u>Official Discord</u></color></link>\r\n\r\nThank you for your support and participation!",
