@@ -56,7 +56,7 @@ do
 		#do
 			POST="{\"set\" : 1,\"top\" : \"$TOP.$SID\",\"limit\" : 200}"
 			#echo $POST
-        		/usr/bin/curl -s --max-time 5  http://$PODIP:$PODPORT/debug/sysLog?lv=warn
+        		/usr/bin/curl  -d'{"set" : 1,"limit" : 1692412466,"close" : 2}'  http://$PODIP:$PODPORT/debug/tokenclose
 		#done
 	fi
 	#for TOP in `cat top.txt`
