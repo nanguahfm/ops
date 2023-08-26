@@ -1,0 +1,4 @@
+redis-cli  -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zscore GLOBAL_MINE_7  c1415f1f-ef66-410d-bf54-5a3b6e6e68b7 
+redis-cli  -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zscore GLOBAL_MINE_7  d32e61c5-c7c0-4359-920a-86f856287624 
+redis-cli  -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zscore GLOBAL_MINE_7  222c9f1d-6610-486e-b6e5-bb562297418a 
+redis-cli  -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zscore GLOBAL_MINE_7  917afc9a-dc7a-40f3-b89c-fdd1d2d4c9de 
