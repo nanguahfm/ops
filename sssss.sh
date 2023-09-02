@@ -1,5 +1,5 @@
 #!/bin/bash
-for x in `cat soulhall.txt`
-do
-	echo $x
-done
+while IFS=$'\t' read -r uuid zone; do
+    echo "UUID: $uuid" "Zone: $zone"
+    
+done < soulhall.txt
