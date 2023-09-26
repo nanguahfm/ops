@@ -1,24 +1,23 @@
 #!/bin/bash
 
-REDIS_HOST=ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com
-REDIS_PORT=6379
-REDIS_DB=0
-cursor=-1
-keys=()
-while [[ $cursor -ne 0 ]]; do
-    if [[ $cursor -eq -1 ]]; then
-        cursor=0
+REDIS_HOST="ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com"
+REDIS_PORT="6379"
+REDIS_DB="0"
+PATTERN="*"  # 您可以修改这个模式以匹配特定的键
+
+cursor=0
+
+while [[ 1 ]]; do
+    # 使用SCAN命令获取键，每次都更新cursor的值
+    response=$(redis-cli -h $REDIS_HOST -p $REDIS_PORT -n $REDIS_DB SCAN $cursor MATCH $PATTERN COUNT 100)
+    cursor=$(echo "$response" | head -1)  # 更新cursor值为响应的第一行
+    keys=$(echo "$response" | tail -n +2)  # 获取除了第一行之后的所有行（即键）
+
+    # 打印获取的键
+    echo "$keys"
+
+    # 如果cursor回到0，我们已经获取了所有的键
+    if [[ "$cursor" == "0" ]]; then
+        break
     fi
-
-    reply=$(redis-cli -h "$REDIS_HOST" -p "$REDIS_PORT" -n "$REDIS_DB" SCAN "$cursor" MATCH '*')
-    cursor=$(echo "$reply" | cut -d ' ' -f1)
-
-    while read -r key; do
-        keys+=("$key")
-    done < <(echo "$reply" | cut -d ' ' -f2-)
-
-done
-
-for key in "${keys[@]}"; do
-    echo "$key"
 done
