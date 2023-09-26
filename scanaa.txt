@@ -10,7 +10,7 @@ cursor=0
 while [[ 1 ]]; do
     # 使用SCAN命令获取键，每次都更新cursor的值
     response=$(redis-cli -h $REDIS_HOST -p $REDIS_PORT -n $REDIS_DB SCAN $cursor)
-	echo $response
+	#echo $response
     cursor=$(echo "$response" | head -1)  # 更新cursor值为响应的第一行
     keys=$(echo "$response" | tail -n +2)  # 获取除了第一行之后的所有行（即键）
 
