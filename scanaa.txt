@@ -3,23 +3,22 @@
 REDIS_HOST=ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com
 REDIS_PORT=6379
 REDIS_DB=0
-
 cursor=-1
 keys=()
-
-while [ $cursor -ne 0 ]; do
-    if [ $cursor -eq -1 ]
-    then
+while [[ $cursor -ne 0 ]]; do
+    if [[ $cursor -eq -1 ]]; then
         cursor=0
     fi
 
-    reply=$(redis-cli -h $REDIS_HOST -p $REDIS_PORT -n $REDIS_DB SCAN $cursor MATCH *)
-    cursor=$(echo $reply | cut -d ' ' -f1)
+    reply=$(redis-cli -h "$REDIS_HOST" -p "$REDIS_PORT" -n "$REDIS_DB" SCAN "$cursor" MATCH '*')
+    cursor=$(echo "$reply" | cut -d ' ' -f1)
 
-    keys+=( $(echo $reply | cut -d ' ' -f2-) )
+    while read -r key; do
+        keys+=("$key")
+    done < <(echo "$reply" | cut -d ' ' -f2-)
+
 done
 
-for key in "${keys[@]}"
-do
-    echo $key
+for key in "${keys[@]}"; do
+    echo "$key"
 done
