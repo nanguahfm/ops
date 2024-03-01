@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+declare -a keyBatch
+
+
+batchSize=50
+
+
+while IFS= read -r line; do
+
+    keyBatch+=("$line")
+    
+
+    if [ ${#keyBatch[@]} -eq $batchSize ]; then
+
+        redis-cli -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 del ${keyBatch[*]} >> del1.txt
+        
+
+        for key in "${keyBatch[@]}"; do
+            echo $key >> del1.txt
+        done
+        
+  
+        keyBatch=()
+    fi
+done < x1.txt
+
+
+if [ ${#keyBatch[@]} -gt 0 ]; then
+    redis-cli -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 del ${keyBatch[*]} >> del1.txt
+    for key in "${keyBatch[@]}"; do
+        echo $key >> del1.txt
+    done
+fi
