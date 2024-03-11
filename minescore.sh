@@ -18,7 +18,7 @@ export PGPASSWORD=`echo ${dbinfo[1]}|awk -F'@' '{print $1}'`;
 NOW=`date '+%s'`
 #echo -e "$YELLOW ${GAMEOPS_DATABASE_ADDRESS}$STD"
 #SQL="select array_to_json(array_agg(row_to_json(t))) as array_to_json from (select name from server_list) t"
-SQL="select * from toprecord where id = 'GLOBAL_MINE_14' where uid = '$1' "
+SQL="select * from toprecord where id = 'GLOBAL_MINE_14' and uid = '$1' "
 #SQL="select  concat(min(t.name), 'SSS', t.serverid)  from (select s."name",  c.serverid  from server_list  s, cluster_ids c where s.cluster = c."cluster" order by c.serverid) as  t  group by t.serverid"
 echo $SQL
 #INFO=`/usr/bin/psql -h ${HOST} -p ${PORT} -U ${USER} -d ${DATABASE} -A -t -c "${SQL}"|jq '.[]|.name'|sed 's/"//g'`
