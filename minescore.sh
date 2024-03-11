@@ -12,6 +12,20 @@ export dbinfo=(`echo ${CENTRAL_DATABASE_ADDRESS}|tr ':' ' '`);
 export USER=${dbinfo[0]} PORT=`echo ${dbinfo[2]}|awk -F/ '{print $1}'` DATABASE=`echo ${dbinfo[2]}|awk -F/ '{print $2}'`;
 export HOST=`echo ${dbinfo[1]}|awk -F'@' '{print $2}'`;
 export PGPASSWORD=`echo ${dbinfo[1]}|awk -F'@' '{print $1}'`;
+#exit
+if [ "$1" = "" ];then
+	echo "need uid"
+	exit
+fi
+
+
+if [ "$2" = "" ];then
+	echo "need score"
+	exit
+fi
+
+echo $1 --------------- $2
+
 
 # Get Online num
 #ONLINE=`/usr/bin/curl -s "http://localhost:8888/get_online"`
@@ -30,9 +44,9 @@ echo "----------------------------modify-----------------"
 ((ss = $2 * 10000000 + 948707))
 echo $ss
 SQL2='UPDATE public.top_record SET maxscore=$2 WHERE id='GLOBAL_MINE_14' AND uid='$1'::uuid::uuid;'
-INFO2=`/usr/bin/psql -h ${HOST} -p ${PORT} -U ${USER} -d ${DATABASE} -A -t -c "${SQL}"`
+#INFO2=`/usr/bin/psql -h ${HOST} -p ${PORT} -U ${USER} -d ${DATABASE} -A -t -c "${SQL}"`
 
-redis-cli -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zadd GLOBAL_MINE_14 $1  $ss
+#redis-cli -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zadd GLOBAL_MINE_14 $1  $ss
 echo "----------------------------"
 INFO=`/usr/bin/psql -h ${HOST} -p ${PORT} -U ${USER} -d ${DATABASE} -A -t -c "${SQL}"`
 echo $INFO
@@ -40,15 +54,4 @@ redis-cli -h ca001-central-1.bdct0f.ng.0001.usw2.cache.amazonaws.com -p 6379 zsc
 
 echo "----------------------------"
 
-#exit
-if [ "$1" = "" ];then
-	echo "need uid"
-	exit
-fi
-
-
-if [ "$2" = "" ];then
-	echo "need score"
-	exit
-fi
 
