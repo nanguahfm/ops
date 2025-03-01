@@ -1,0 +1,14 @@
+
+select
+	user_id,
+	((value->'Value'->'stateList')->>0)::BIGINT as num
+from
+	storage
+where
+	collection = 'USER_STORAGE'
+	and key = 'USER_STATE' 
+	and value->'Value' is not null
+	and value->'Value'->'stateList' is not null
+	and jsonb_array_length(value->'Value'->'stateList') > 0
+	and ((value->'Value'->'stateList')->>0)::BIGINT >2147483647
+)
