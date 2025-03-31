@@ -44,7 +44,7 @@ do
         PODPORT=`echo "$PODPORT + 1"|bc`
         echo -e  $GREEN $PODIP:$PODPORT $STD  $SID 
 	EXEC=0
-	if [[ $SID =~ .*$SERVER.+ ]];then
+	if [[ $SID =~ .*$SERVER.* ]];then
 		EXEC=1
 	fi
 	if [[ $SID == $SERVER ]];then
