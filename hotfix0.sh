@@ -54,7 +54,7 @@ do
 		echo -e $RED EXEC SERVER $SID $STD
 		#for TOP in `cat top.txt`
 		#do
-		POST="{\"funcs\" :[\"server/server.getUserEquipmentGradeByType\", \"server/server.getUserRuneSlot1GradeByType\", \"server/server.getUserRuneSlot2GradeByType\", \"server/server.getUserRuneSlot3GradeByType\" ],\"so\" : \"28250877\",\"set\" :1,\"hot\" : \"gamefix\",\"safe\" : 0,\"clean\" : 0,\"fix\" : 0}"
+		POST="{\"funcs\" :[\"server/server.CustomizeBoxUseV2\" ],\"so\" : \"c2c17762\",\"set\" :1,\"hot\" : \"gamefix\",\"safe\" : 0,\"clean\" : 0,\"fix\" : 0}"
 			#echo $POST
         		/usr/bin/curl -s --max-time 50 -d"$POST"  http://$PODIP:$PODPORT/debug/debughotfix
 		#done
