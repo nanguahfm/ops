@@ -29,7 +29,7 @@ INFO=`/usr/bin/psql -h ${HOST} -p ${PORT} -U ${USER} -d ${DATABASE} -A -t -c "${
 if [ "$1" = "" ];then
 	echo "need server id"
 	exit
-fi
+fi 
 SERVER=$1
 echo SERVER:[$SERVER]
 echo "------------------------------"
@@ -54,7 +54,7 @@ do
 		echo -e $RED EXEC SERVER $SID $STD
 		#for TOP in `cat top.txt`
 		#do
-		POST="{\"funcs\" :[\"server/server.EncodeOtherScore\",\"server/server.DecodeOtherScore\"],\"so\" : \"9750ba44\",\"set\" :1,\"hot\" : \"gamefix\",\"safe\" : 0,\"clean\" : 0,\"fix\" : 0}"
+		POST="{\"funcs\" :[\"server/server.EncodeOtherScore\",\"server/server.DecodeOtherScore\"],\"so\" : \"e47a724\",\"set\" :1,\"hot\" : \"gamefix\",\"safe\" : 0,\"clean\" : 0,\"fix\" : 0}"
 			#echo $POST
         		/usr/bin/curl -s --max-time 50 -d"$POST"  http://$PODIP:$PODPORT/debug/debughotfix
 		#done
